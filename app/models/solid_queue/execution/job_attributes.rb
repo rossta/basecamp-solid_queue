@@ -9,7 +9,7 @@ module SolidQueue
         class_attribute :assumable_attributes_from_job, instance_accessor: false, default: %i[ queue_name priority ]
       end
 
-      class_methods do
+      module ClassMethods
         def assumes_attributes_from_job(*attribute_names)
           self.assumable_attributes_from_job |= attribute_names
           before_create -> { assume_attributes_from_job }
